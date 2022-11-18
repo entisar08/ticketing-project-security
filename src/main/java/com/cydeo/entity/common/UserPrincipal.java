@@ -12,11 +12,11 @@ import java.util.List;
 public class UserPrincipal implements UserDetails {
 
 
-    /*this class act as mapping so to map my user to spring user and when I
+    /*this class act as mapper so to map my user to spring user and when I
    set user fields in spring user  i want to set it
    to user entity fields*/
 
-    /*After you create this mapper now you can use it */
+
 
 
     private User user;//to access user entity fields
@@ -47,7 +47,7 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return this.user.isEnabled();
+        return true;
     }
 
     @Override
@@ -62,11 +62,13 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return this.user.isEnabled();
     }
 
 
-
+    public Long getId(){
+        return this.user.getId();
+    }
 
 
 

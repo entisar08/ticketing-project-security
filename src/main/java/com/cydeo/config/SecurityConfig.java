@@ -1,6 +1,5 @@
 package com.cydeo.config;
 
-
 import com.cydeo.service.SecurityService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -39,12 +38,14 @@ public class SecurityConfig {
 
     private final SecurityService securityService;
 
+
     public SecurityConfig(AuthSuccessHandler authSuccessHandler, SecurityService securityService) {
         this.authSuccessHandler = authSuccessHandler;
         this.securityService = securityService;
     }
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+
         return http
                 .authorizeRequests()// evrything should be authorized
                 .antMatchers("/user/**") .hasAuthority("Admin")               //anything under user controller
@@ -66,7 +67,7 @@ public class SecurityConfig {
                 .and()
                 //.httpBasic()spring popo up username and password
                 .formLogin()
-                .loginPage("/login")
+                     .loginPage("/login")
          //         .defaultSuccessUrl("/welcome")//override login ..what if you want everyone login  to land on a different page
                 //and use success handler
                 .successHandler(authSuccessHandler)
@@ -77,7 +78,7 @@ public class SecurityConfig {
                 .logout()
                      .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))//this part :when someone request
                 // logout lamd on login page you need to update Ui and provide the link of logout
-                .logoutSuccessUrl("/login")
+                     .logoutSuccessUrl("/login")
                 .and()
                 //add remember me
                 .rememberMe()
