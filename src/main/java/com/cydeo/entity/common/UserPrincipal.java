@@ -63,12 +63,12 @@ public class UserPrincipal implements UserDetails {
     @Override
     public boolean isEnabled() {
         return this.user.isEnabled();
-    }
+    }  //when you register they send you email to enable your account
 
 
-    public Long getId(){
-        return this.user.getId();
-    }
+  //  public Long getId(){
+  //      return this.user.getId();
+  //  }
 
 
 
